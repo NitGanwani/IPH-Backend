@@ -1,8 +1,8 @@
 import createDebug from 'debug';
-import { Terminal } from '../../entitites/terminal';
-import { Repository } from '../repo';
-import { TerminalModel } from './terminals.mongo.model';
-import { HttpError } from '../../types/http.error';
+import { Terminal } from '../../entitites/terminal.js';
+import { Repository } from '../repo.js';
+import { TerminalModel } from './terminals.mongo.model.js';
+import { HttpError } from '../../types/http.error.js';
 
 const debug = createDebug('IPH:TerminalsMongoRepo');
 

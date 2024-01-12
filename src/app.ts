@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import createDebug from 'debug';
 import { userRouter } from './routers/users.router.js';
 import { errorMiddleware } from './middleware/error.js';
+import { terminalRouter } from './routers/terminals.router.js';
 
 const debug = createDebug('IPH:app');
 
@@ -17,5 +18,6 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.use('/users', userRouter);
+app.use('/terminals', terminalRouter);
 
 app.use(errorMiddleware);
