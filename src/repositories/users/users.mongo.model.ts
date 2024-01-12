@@ -14,9 +14,6 @@ const usersSchema = new Schema<User>({
   name: {
     type: String,
   },
-  surname: {
-    type: String,
-  },
 });
 
 usersSchema.set('toJSON', {
@@ -24,7 +21,7 @@ usersSchema.set('toJSON', {
     returnedObject.id = returnedObject._id;
     delete returnedObject._id;
     delete returnedObject.__v;
-    delete returnedObject.passwd;
+    delete returnedObject.password;
   },
 });
 

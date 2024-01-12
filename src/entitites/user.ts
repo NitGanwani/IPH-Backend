@@ -6,5 +6,4 @@ export type LoginUser = {
 export type User = LoginUser & {
   id: string;
   name: string;
-  surname: string;
 };
