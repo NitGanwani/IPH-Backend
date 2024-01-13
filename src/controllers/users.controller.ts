@@ -4,6 +4,7 @@ import { UsersMongoRepo } from '../repositories/users/users.mongo.repo.js';
 import { Auth } from '../services/auth.js';
 import { User } from '../entitites/user.js';
 import { Controller } from './controller.js';
+import { LoginResponse } from '../types/login.response.js';
 
 const debug = createDebug('IPH:UsersController');
 
@@ -19,11 +20,12 @@ export class UsersController extends Controller<User> {
         ? await this.repo.getById(req.body.userId)
         : await this.repo.login(req.body);
 
-      const data = {
+      const data: LoginResponse = {
         user: result,
         token: Auth.signJWT({
           id: result.id,
           email: result.email,
+          role: result.role,
         }),
       };
       res.status(202);

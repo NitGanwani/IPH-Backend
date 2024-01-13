@@ -2,15 +2,11 @@ import { hash, compare } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import createDebug from 'debug';
-import { User } from '../entitites/user.js';
 import { HttpError } from '../types/http.error.js';
+import { TokenPayload } from '../types/token.payload.js';
 const debug = createDebug('IPH:auth');
 
 debug('Imported');
-export type TokenPayload = {
-  id: User['id'];
-  email: string;
-} & jwt.JwtPayload;
 
 export abstract class Auth {
   static secret = process.env.JWT_SECRET;
