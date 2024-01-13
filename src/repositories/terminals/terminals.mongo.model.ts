@@ -22,6 +22,10 @@ const terminalsSchema = new Schema<Terminal>({
     type: Boolean,
     required: true,
   },
+  group: {
+    type: Schema.Types.ObjectId,
+    ref: 'Group',
+  },
 });
 
 terminalsSchema.set('toJSON', {

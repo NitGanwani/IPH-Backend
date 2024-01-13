@@ -3,6 +3,7 @@ import { Terminal } from '../../entitites/terminal.js';
 import { Repository } from '../repo.js';
 import { TerminalModel } from './terminals.mongo.model.js';
 import { HttpError } from '../../types/http.error.js';
+import { GroupModel } from '../groups/groups.mongo.model.js';
 
 const debug = createDebug('IPH:TerminalsMongoRepo');
 
@@ -13,7 +14,8 @@ export class TerminalsMongoRepo implements Repository<Terminal> {
 
   async getAll(): Promise<Terminal[]> {
     const result = await TerminalModel.find().exec();
-    if (!result) throw new HttpError(404, 'Not Found', 'No terminals found');
+    if (result.length === 0)
+      throw new HttpError(404, 'Not Found', 'No terminals found');
     return result;
   }
 
@@ -38,8 +40,14 @@ export class TerminalsMongoRepo implements Repository<Terminal> {
   }
 
   async delete(id: string): Promise<void> {
-    const result = await TerminalModel.findByIdAndDelete(id).exec();
+    const result = (await TerminalModel.findByIdAndDelete(
+      id
+    ).exec()) as Terminal;
     if (result === null)
       throw new HttpError(404, 'Not found', 'Bad id for the delete');
+
+    await GroupModel.findByIdAndUpdate(result.group, {
+      $pull: { terminals: id },
+    }).exec();
   }
 }

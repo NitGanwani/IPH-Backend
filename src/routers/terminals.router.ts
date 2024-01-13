@@ -3,12 +3,14 @@ import createDebug from 'debug';
 import { TerminalsMongoRepo } from '../repositories/terminals/terminals.mongo.repo.js';
 import { TerminalsController } from '../controllers/terminals.controller.js';
 import { AuthInterceptor } from '../middleware/auth.interceptor.js';
+import { GroupsMongoRepo } from '../repositories/groups/groups.mongo.repo.js';
 
 const debug = createDebug('IPH:TerminalRouter');
 
 debug('Executed');
 const repo = new TerminalsMongoRepo();
-const controller = new TerminalsController(repo);
+const groupsRepo = new GroupsMongoRepo();
+const controller = new TerminalsController(repo, groupsRepo);
 const interceptor = new AuthInterceptor();
 
 export const terminalRouter = createRouter();
@@ -27,7 +29,7 @@ terminalRouter.post(
   '/',
   interceptor.authorization.bind(interceptor),
   interceptor.isAdmin.bind(interceptor),
-  controller.create.bind(controller)
+  controller.createTerminal.bind(controller)
 );
 terminalRouter.patch(
   '/:id',

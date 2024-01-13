@@ -26,8 +26,4 @@ usersRouter.get(
   controller.getById.bind(controller)
 );
 usersRouter.post('/register', controller.create.bind(controller));
-usersRouter.patch(
-  '/login',
-  interceptor.authorization.bind(interceptor),
-  controller.login.bind(controller)
-);
+usersRouter.patch('/login', controller.login.bind(controller));
