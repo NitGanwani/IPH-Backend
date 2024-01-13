@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { Group } from '../../entitites/group.js';
+import { Group } from '../../entities/group.js';
 
 const groupsSchema = new Schema<Group>({
   name: {

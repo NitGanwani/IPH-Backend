@@ -1,6 +1,6 @@
 import { Repository } from '../repo.js';
 import { HttpError } from '../../types/http.error.js';
-import { Chat } from '../../entitites/chat.js';
+import { Chat } from '../../entities/chat.js';
 import { ChatModel } from './chats.mongo.model.js';
 
 export class ChatsMongoRepo implements Repository<Chat> {

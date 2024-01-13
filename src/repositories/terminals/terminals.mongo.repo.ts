@@ -1,5 +1,5 @@
 import createDebug from 'debug';
-import { Terminal } from '../../entitites/terminal.js';
+import { Terminal } from '../../entities/terminal.js';
 import { Repository } from '../repo.js';
 import { TerminalModel } from './terminals.mongo.model.js';
 import { HttpError } from '../../types/http.error.js';

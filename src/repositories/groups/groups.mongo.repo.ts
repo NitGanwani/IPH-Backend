@@ -1,7 +1,7 @@
 import createDebug from 'debug';
 import { Repository } from '../repo.js';
 import { HttpError } from '../../types/http.error.js';
-import { Group } from '../../entitites/group.js';
+import { Group } from '../../entities/group.js';
 import { GroupModel } from './groups.mongo.model.js';
 
 const debug = createDebug('IPH:GroupsMongoRepo');

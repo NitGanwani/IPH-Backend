@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { Terminal } from '../../entitites/terminal.js';
+import { Terminal } from '../../entities/terminal.js';
 
 const terminalsSchema = new Schema<Terminal>({
   name: {

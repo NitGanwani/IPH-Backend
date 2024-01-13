@@ -2,7 +2,7 @@ import createDebug from 'debug';
 import { UserModel } from './users.mongo.model.js';
 import { HttpError } from '../../types/http.error.js';
 import { Auth } from '../../services/auth.js';
-import { LoginUser, User } from '../../entitites/user.js';
+import { LoginUser, User } from '../../entities/user.js';
 import { Repository } from '../repo.js';
 
 const debug = createDebug('IPH:UsersMongoRepo');

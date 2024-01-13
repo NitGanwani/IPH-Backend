@@ -1,4 +1,4 @@
-import { User } from '../entitites/user';
+import { User } from '../entities/user';
 import jwt from 'jsonwebtoken';
 
 export type TokenPayload = {

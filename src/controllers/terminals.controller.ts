@@ -1,5 +1,5 @@
 import createDebug from 'debug';
-import { Terminal } from '../entitites/terminal.js';
+import { Terminal } from '../entities/terminal.js';
 import { TerminalsMongoRepo } from '../repositories/terminals/terminals.mongo.repo.js';
 import { Controller } from './controller.js';
 import { GroupsMongoRepo } from '../repositories/groups/groups.mongo.repo.js';

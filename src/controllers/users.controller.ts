@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import createDebug from 'debug';
 import { UsersMongoRepo } from '../repositories/users/users.mongo.repo.js';
 import { Auth } from '../services/auth.js';
-import { User } from '../entitites/user.js';
+import { User } from '../entities/user.js';
 import { Controller } from './controller.js';
 import { LoginResponse } from '../types/login.response.js';
 import { ChatsMongoRepo } from '../repositories/chats/chats.mongo.repo.js';
