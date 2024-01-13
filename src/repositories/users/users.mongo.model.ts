@@ -21,6 +21,10 @@ const usersSchema = new Schema<User>({
     enum: ['Admin', 'User'],
     default: 'User',
   },
+  chat: {
+    type: Schema.Types.ObjectId,
+    ref: 'Chat',
+  },
 });
 
 usersSchema.set('toJSON', {

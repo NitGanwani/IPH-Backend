@@ -3,12 +3,14 @@ import createDebug from 'debug';
 import { UsersMongoRepo } from '../repositories/users/users.mongo.repo.js';
 import { UsersController } from '../controllers/users.controller.js';
 import { AuthInterceptor } from '../middleware/auth.interceptor.js';
+import { ChatsMongoRepo } from '../repositories/chats/chats.mongo.repo.js';
 
 const debug = createDebug('IPH:UserRouter');
 
 debug('Executed');
 const repo = new UsersMongoRepo();
-const controller = new UsersController(repo);
+const chatsRepo = new ChatsMongoRepo();
+const controller = new UsersController(repo, chatsRepo);
 const interceptor = new AuthInterceptor();
 
 export const usersRouter = createRouter();
@@ -25,5 +27,5 @@ usersRouter.get(
   interceptor.isAdmin.bind(interceptor),
   controller.getById.bind(controller)
 );
-usersRouter.post('/register', controller.create.bind(controller));
+usersRouter.post('/register', controller.register.bind(controller));
 usersRouter.patch('/login', controller.login.bind(controller));

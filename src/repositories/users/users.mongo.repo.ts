@@ -27,6 +27,8 @@ export class UsersMongoRepo implements Repository<User> {
 
   async getAll(): Promise<User[]> {
     const result = await UserModel.find().exec();
+    if (result.length === 0)
+      throw new HttpError(404, 'Not Found', 'No users found');
     return result;
   }
 

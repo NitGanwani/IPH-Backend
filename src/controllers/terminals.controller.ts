@@ -10,17 +10,17 @@ const debug = createDebug('IPH:TerminalsController');
 export class TerminalsController extends Controller<Terminal> {
   constructor(
     protected repo: TerminalsMongoRepo,
+    // eslint-disable-next-line no-unused-vars
     protected groupsRepo: GroupsMongoRepo
   ) {
     super(repo);
-    this.groupsRepo = groupsRepo;
+
     debug('Instantiated');
   }
 
   async createTerminal(req: Request, res: Response, next: NextFunction) {
     try {
       const { groupId } = req.body;
-
       const group = await this.groupsRepo.getById(groupId);
 
       const newTerminal = await this.repo.create({

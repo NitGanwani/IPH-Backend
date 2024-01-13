@@ -5,11 +5,16 @@ import { Auth } from '../services/auth.js';
 import { User } from '../entitites/user.js';
 import { Controller } from './controller.js';
 import { LoginResponse } from '../types/login.response.js';
+import { ChatsMongoRepo } from '../repositories/chats/chats.mongo.repo.js';
 
 const debug = createDebug('IPH:UsersController');
 
 export class UsersController extends Controller<User> {
-  constructor(protected repo: UsersMongoRepo) {
+  constructor(
+    protected repo: UsersMongoRepo,
+    // eslint-disable-next-line no-unused-vars
+    protected chatsRepo: ChatsMongoRepo
+  ) {
     super(repo);
     debug('Instantiated');
   }
@@ -31,6 +36,21 @@ export class UsersController extends Controller<User> {
       res.status(202);
       res.statusMessage = 'Accepted';
       res.json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async register(req: Request, res: Response, next: NextFunction) {
+    try {
+      const user = await this.repo.create(req.body);
+      const { chatId } = req.body;
+
+      if (chatId) {
+        await this.chatsRepo.addParticipantToChat(chatId, user.id);
+      }
+
+      res.status(201).json(user);
     } catch (error) {
       next(error);
     }

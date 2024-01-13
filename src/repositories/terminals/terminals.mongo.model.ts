@@ -21,6 +21,7 @@ const terminalsSchema = new Schema<Terminal>({
   isConnected: {
     type: Boolean,
     required: true,
+    default: false,
   },
   group: {
     type: Schema.Types.ObjectId,
