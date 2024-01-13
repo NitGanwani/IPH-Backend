@@ -13,6 +13,7 @@ export class TerminalsMongoRepo implements Repository<Terminal> {
 
   async getAll(): Promise<Terminal[]> {
     const result = await TerminalModel.find().exec();
+    if (!result) throw new HttpError(404, 'Not Found', 'No terminals found');
     return result;
   }
 

@@ -13,6 +13,13 @@ const usersSchema = new Schema<User>({
   },
   name: {
     type: String,
+    required: true,
+  },
+  role: {
+    type: String,
+    required: true,
+    enum: ['Admin', 'User'],
+    default: 'User',
   },
 });
 

@@ -6,4 +6,5 @@ export type LoginUser = {
 export type User = LoginUser & {
   id: string;
   name: string;
+  role: 'Admin' | 'User';
 };

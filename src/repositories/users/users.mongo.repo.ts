@@ -36,6 +36,15 @@ export class UsersMongoRepo implements Repository<User> {
     return result;
   }
 
+  async update(id: string, data: Partial<User>): Promise<User> {
+    const newUser = await UserModel.findByIdAndUpdate(id, data, {
+      new: true,
+    }).exec();
+    if (newUser === null)
+      throw new HttpError(404, 'Not found', 'Wrong id for the update');
+    return newUser;
+  }
+
   async delete(id: string): Promise<void> {
     const result = await UserModel.findByIdAndDelete(id).exec();
     if (result === null)

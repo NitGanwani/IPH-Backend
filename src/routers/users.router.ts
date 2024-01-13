@@ -15,4 +15,5 @@ userRouter.get('/', controller.getAll.bind(controller));
 userRouter.get('/:id', controller.getById.bind(controller));
 userRouter.post('/register', controller.create.bind(controller));
 userRouter.patch('/login', controller.login.bind(controller));
+userRouter.patch('/:id', controller.login.bind(controller));
 userRouter.delete('/:id', controller.delete.bind(controller));
