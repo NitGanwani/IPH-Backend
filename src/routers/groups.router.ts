@@ -13,11 +13,7 @@ const interceptor = new AuthInterceptor();
 
 export const groupsRouter = createRouter();
 
-groupsRouter.get(
-  '/',
-  interceptor.authorization.bind(interceptor),
-  controller.getAll.bind(controller)
-);
+groupsRouter.get('/', controller.getAll.bind(controller));
 groupsRouter.get(
   '/:id',
   interceptor.authorization.bind(interceptor),

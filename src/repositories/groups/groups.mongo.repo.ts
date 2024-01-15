@@ -13,7 +13,7 @@ export class GroupsMongoRepo implements Repository<Group> {
 
   async getAll(): Promise<Group[]> {
     const result = await GroupModel.find()
-      .populate('terminals', { id: 0 })
+      .populate('terminals', { group: 0, id: 0 })
       .exec();
     if (result.length === 0)
       throw new HttpError(404, 'Not Found', 'No groups found');

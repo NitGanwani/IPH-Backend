@@ -13,7 +13,9 @@ export class TerminalsMongoRepo implements Repository<Terminal> {
   }
 
   async getAll(): Promise<Terminal[]> {
-    const result = await TerminalModel.find().exec();
+    const result = await TerminalModel.find()
+      .populate('group', { id: 0 })
+      .exec();
     if (result.length === 0)
       throw new HttpError(404, 'Not Found', 'No terminals found');
     return result;

@@ -20,16 +20,21 @@ export class TerminalsController extends Controller<Terminal> {
 
   async createTerminal(req: Request, res: Response, next: NextFunction) {
     try {
-      const { groupId } = req.body;
-      const group = await this.groupsRepo.getById(groupId);
+      const { group } = req.body;
+      console.log('GRUPO AQUI', group);
+      const existingGroup = await this.groupsRepo.getById(group);
 
       const newTerminal = await this.repo.create({
         ...req.body,
-        group,
+        group: existingGroup.id,
       });
+      console.log('NEW TERMINAL', newTerminal);
 
-      group.terminals.push(newTerminal);
-      await this.groupsRepo.update(groupId, { terminals: group.terminals });
+      existingGroup.terminals.push(newTerminal);
+
+      await this.groupsRepo.update(group, {
+        terminals: existingGroup.terminals,
+      });
 
       res.status(201).json(newTerminal);
     } catch (error) {

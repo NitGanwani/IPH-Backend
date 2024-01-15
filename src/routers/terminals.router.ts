@@ -15,11 +15,7 @@ const interceptor = new AuthInterceptor();
 
 export const terminalRouter = createRouter();
 
-terminalRouter.get(
-  '/',
-  interceptor.authorization.bind(interceptor),
-  controller.getAll.bind(controller)
-);
+terminalRouter.get('/', controller.getAll.bind(controller));
 terminalRouter.get(
   '/:id',
   interceptor.authorization.bind(interceptor),
