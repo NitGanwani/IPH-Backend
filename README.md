@@ -18,10 +18,10 @@ This backend server provides the necessary APIs for managing terminals in the IP
 ```bash
 # Install dependencies
 npm install
-# Start the server in development mode with automatic restart
-npm run start
 # Build the production-ready app
 npm run build
+# Start the server in development mode with automatic restart
+npm run start
 ```
 
 # MongoDB User
