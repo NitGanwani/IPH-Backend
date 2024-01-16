@@ -10,7 +10,7 @@
     "server2": "nodemon dist/index.js",
     "build": "tsc -w",
     "build:prod": "tsc",
-    "start": "concurrently \"npm:server\" \"npm:build\""
+    "start": "concurrently \"npm:build\" \"npm:server\""
   },
   "keywords": [],
   "author": "Nitin Ganwani",
