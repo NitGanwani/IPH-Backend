@@ -1,15 +1,11 @@
-import createDebug from 'debug';
 import { Repository } from '../repo.js';
 import { HttpError } from '../../types/http.error.js';
 import { Group } from '../../entities/group.js';
 import { GroupModel } from './groups.mongo.model.js';
 
-const debug = createDebug('IPH:GroupsMongoRepo');
-
 export class GroupsMongoRepo implements Repository<Group> {
-  constructor() {
-    debug('Instantiated');
-  }
+  // eslint-disable-next-line no-useless-constructor
+  constructor() {}
 
   async getAll(): Promise<Group[]> {
     const result = await GroupModel.find()

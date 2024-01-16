@@ -1,13 +1,9 @@
 import { Router as createRouter } from 'express';
-import createDebug from 'debug';
 import { TerminalsMongoRepo } from '../repositories/terminals/terminals.mongo.repo.js';
 import { TerminalsController } from '../controllers/terminals.controller.js';
 import { AuthInterceptor } from '../middleware/auth.interceptor.js';
 import { GroupsMongoRepo } from '../repositories/groups/groups.mongo.repo.js';
 
-const debug = createDebug('IPH:TerminalRouter');
-
-debug('Executed');
 const repo = new TerminalsMongoRepo();
 const groupsRepo = new GroupsMongoRepo();
 const controller = new TerminalsController(repo, groupsRepo);

@@ -1,16 +1,12 @@
-import createDebug from 'debug';
 import { Terminal } from '../../entities/terminal.js';
 import { Repository } from '../repo.js';
 import { TerminalModel } from './terminals.mongo.model.js';
 import { HttpError } from '../../types/http.error.js';
 import { GroupModel } from '../groups/groups.mongo.model.js';
 
-const debug = createDebug('IPH:TerminalsMongoRepo');
-
 export class TerminalsMongoRepo implements Repository<Terminal> {
-  constructor() {
-    debug('Instantiated');
-  }
+  // eslint-disable-next-line no-useless-constructor
+  constructor() {}
 
   async getAll(): Promise<Terminal[]> {
     const result = await TerminalModel.find()

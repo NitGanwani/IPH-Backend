@@ -10,8 +10,7 @@
     "server2": "nodemon dist/index.js",
     "build": "tsc -w",
     "build:prod": "tsc",
-    "start": "concurrently \"npm:server\" \"npm:build\"",
-    "test": "jest --watchAll --coverage"
+    "start": "concurrently \"npm:server\" \"npm:build\""
   },
   "keywords": [],
   "author": "Nitin Ganwani",

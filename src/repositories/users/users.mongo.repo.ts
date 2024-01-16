@@ -1,16 +1,12 @@
-import createDebug from 'debug';
 import { UserModel } from './users.mongo.model.js';
 import { HttpError } from '../../types/http.error.js';
 import { Auth } from '../../services/auth.js';
 import { LoginUser, User } from '../../entities/user.js';
 import { Repository } from '../repo.js';
 
-const debug = createDebug('IPH:UsersMongoRepo');
-
 export class UsersMongoRepo implements Repository<User> {
-  constructor() {
-    debug('Instantiated');
-  }
+  // eslint-disable-next-line no-useless-constructor
+  constructor() {}
 
   async create(newUser: Omit<User, 'id'>): Promise<User> {
     newUser.password = await Auth.hash(newUser.password);

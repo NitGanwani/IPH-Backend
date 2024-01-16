@@ -1,13 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
-import createDebug from 'debug';
+
 import { UsersMongoRepo } from '../repositories/users/users.mongo.repo.js';
 import { Auth } from '../services/auth.js';
 import { User } from '../entities/user.js';
 import { Controller } from './controller.js';
 import { LoginResponse } from '../types/login.response.js';
 import { ChatsMongoRepo } from '../repositories/chats/chats.mongo.repo.js';
-
-const debug = createDebug('IPH:UsersController');
 
 export class UsersController extends Controller<User> {
   constructor(
@@ -16,7 +14,6 @@ export class UsersController extends Controller<User> {
     protected chatsRepo: ChatsMongoRepo
   ) {
     super(repo);
-    debug('Instantiated');
   }
 
   async login(req: Request, res: Response, next: NextFunction) {
@@ -44,10 +41,10 @@ export class UsersController extends Controller<User> {
   async register(req: Request, res: Response, next: NextFunction) {
     try {
       const user = await this.repo.create(req.body);
-      const { chatId } = req.body;
+      const { chat } = req.body;
 
-      if (chatId) {
-        await this.chatsRepo.addParticipantToChat(chatId, user.id);
+      if (chat) {
+        await this.chatsRepo.addParticipantToChat(chat, user.id);
       }
 
       res.status(201).json(user);
