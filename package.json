@@ -8,8 +8,8 @@
     "start:new": "node --watch dist/index.js",
     "server": "cross-env DEBUG=IPH* nodemon dist/index.js",
     "server2": "nodemon dist/index.js",
-    "build": "tsc -w",
-    "build:prod": "tsc",
+    "build:prod": "tsc -w",
+    "build": "tsc",
     "start": "concurrently \"npm:build\" \"npm:server\""
   },
   "keywords": [],
